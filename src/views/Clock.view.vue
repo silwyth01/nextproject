@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, Fragment } from 'vue'
+import { ref, reactive } from 'vue'
 
 class Clock {
   constructor() {
@@ -51,8 +51,5 @@ clock.start()
   <button @click="clock.stop()">Stop</button>
 </template>
 
-<style scoped>
-a {
-  color: #42b983;
-}
+<style>
 </style>
