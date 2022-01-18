@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from '../views/Home.view.vue'
 import Clock from '../views/Clock.view.vue'
-import Nouvelle from '../views/Nouvelle.view.vue'
+import Library from '../views/Library.view.vue'
 
 
 const routes = [
@@ -16,9 +16,9 @@ const routes = [
         component: Clock
     },
     {
-        path: '/nouvelle',
-        name: 'Nouvelle',
-        component: Nouvelle
+        path: '/library',
+        name: 'Library',
+        component: Library
     },
 ]
 const router = createRouter({
