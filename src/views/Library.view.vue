@@ -38,7 +38,7 @@ myLibrary.addBookToLibrary(testBook);
                     <input class="basis-1/5" v-model="author" placeholder="Author" />
                     <input class="basis-1/5" v-model.number="pages" placeholder="Pages" />
                     <input type="checkbox" v-model="toggle" true-value="Read" false-value="notRead" />
-                    // Gros prob de form reset, sais pas si jdois mettre un bouton ou un input, mon bouton reset ma page...
+                    <!-- Gros prob de form reset, sais pas si jdois mettre un bouton ou un input, mon bouton reset ma page... -->
                     <input
                         type="submit"
                         class="px-5 text-purple-500 transition-colors duration-150 border border-purple-500 rounded-lg focus:shadow-outline hover:bg-purple-500 hover:text-purple-100"
