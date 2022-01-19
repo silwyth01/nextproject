@@ -1,1 +1,5 @@
-<template>Home</template>
+<template>
+    <div>
+        <div>Home</div>
+    </div>
+</template>
