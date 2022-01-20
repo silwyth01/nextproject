@@ -35,16 +35,29 @@ myLibrary.addBookToLibrary(testBook);
 
     <template>
     <div class="container">
-        <div>
+        <div class="bg-gray-600 flex justify-center my-10">
             <div class="flex flex-row pl-5">
-                <input class="basis-1/5" v-model="myLibrary.newBook.title" placeholder="Title" />
-                <input class="basis-1/5" v-model="myLibrary.newBook.author" placeholder="Author" />
+                <input
+                    class="basis-1/5"
+                    v-model="myLibrary.newBook.title"
+                    placeholder="Title"
+                    required
+                />
+                <input
+                    class="basis-1/5"
+                    v-model="myLibrary.newBook.author"
+                    placeholder="Author"
+                    required
+                />
                 <input class="basis-1/5" v-model.number="myLibrary.newBook.pages" placeholder="0" />
-                <input type="checkbox" v-model="myLibrary.newBook.status" />
+                <label class="basis-1/5 self-center px-7">
+                    Read ?
+                    <input type="checkbox" v-model="myLibrary.newBook.status" />
+                </label>
                 <!-- Gros prob de form reset, sais pas si jdois mettre un bouton ou un input, mon bouton reset ma page... -->
 
                 <button
-                    class="px-5 text-purple-500 transition-colors duration-150 border border-purple-500 rounded-lg focus:shadow-outline hover:bg-purple-500 hover:text-purple-100"
+                    class="px-8 text-purple-500 transition-colors duration-150 border border-purple-500 rounded-lg focus:shadow-outline hover:bg-purple-500 hover:text-purple-100"
                     @click="myLibrary.addBookToLibrary()"
                 >Add Book</button>
             </div>
