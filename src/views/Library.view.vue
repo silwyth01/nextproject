@@ -12,14 +12,18 @@ class Book {
 }
 class Library {
     constructor() {
+        this.newBook = new Book('', '', 0, true);
         this.books = [];
     }
-    addBookToLibrary(book) {
-        this.books.unshift(book);
+    addBookToLibrary() {
+        this.books.unshift(this.newBook);
+        this.newBook = new Book("", "", 0, true);
     }
+
 }
 const myLibrary = reactive(new Library());
 let testBook = new Book("MobyDick", "Melville", 900, false);
+let bookDefault = new Book('', '', 0, true);
 myLibrary.addBookToLibrary(testBook);
 testBook = new Book("MobyDick", "Melville", 900, false);
 myLibrary.addBookToLibrary(testBook);
@@ -33,19 +37,16 @@ myLibrary.addBookToLibrary(testBook);
     <div class="container">
         <div>
             <div class="flex flex-row pl-5">
-                <form class="form">
-                    <input class="basis-1/5" v-model="title" placeholder="Title" />
-                    <input class="basis-1/5" v-model="author" placeholder="Author" />
-                    <input class="basis-1/5" v-model.number="pages" placeholder="Pages" />
-                    <input type="checkbox" v-model="toggle" true-value="Read" false-value="notRead" />
-                    <!-- Gros prob de form reset, sais pas si jdois mettre un bouton ou un input, mon bouton reset ma page... -->
-                    <input
-                        type="submit"
-                        class="px-5 text-purple-500 transition-colors duration-150 border border-purple-500 rounded-lg focus:shadow-outline hover:bg-purple-500 hover:text-purple-100"
-                        @click="myLibrary.addBookToLibrary(new Book(title, author, pages, stutus))"
-                        @submit="form.clear()"
-                    />Add Book
-                </form>
+                <input class="basis-1/5" v-model="myLibrary.newBook.title" placeholder="Title" />
+                <input class="basis-1/5" v-model="myLibrary.newBook.author" placeholder="Author" />
+                <input class="basis-1/5" v-model.number="myLibrary.newBook.pages" placeholder="0" />
+                <input type="checkbox" v-model="myLibrary.newBook.status" />
+                <!-- Gros prob de form reset, sais pas si jdois mettre un bouton ou un input, mon bouton reset ma page... -->
+
+                <button
+                    class="px-5 text-purple-500 transition-colors duration-150 border border-purple-500 rounded-lg focus:shadow-outline hover:bg-purple-500 hover:text-purple-100"
+                    @click="myLibrary.addBookToLibrary()"
+                >Add Book</button>
             </div>
         </div>
     </div>
