@@ -9,55 +9,67 @@ class Book {
         this.status = false;
         this.isNew = isNew;
     }
+    update() {
+        if (this.title === "" | this.author === "") {
+            alert("This book require a title and an author!");
+            return
+        }
+
+        this.isNew = !this.isNew
+    }
 }
+
 class Library {
     constructor() {
         this.newBook = new Book('', '', 0, true);
         this.books = [];
     }
     addBookToLibrary() {
+        if (this.newBook.title === "" | this.newBook.author === "") {
+            alert("This book require a title and an author!")
+            return
+        }
         this.books.unshift(this.newBook);
         this.newBook = new Book("", "", 0, true);
     }
 
 }
 const myLibrary = reactive(new Library());
-let testBook = new Book("MobyDick", "Melville", 900, false);
-let bookDefault = new Book('', '', 0, true);
-myLibrary.addBookToLibrary(testBook);
-testBook = new Book("MobyDick", "Melville", 900, false);
-myLibrary.addBookToLibrary(testBook);
-testBook = new Book("MobyDick", "Melville", 900, false);
-myLibrary.addBookToLibrary(testBook);
-testBook = new Book("MobyDick", "Melville", 900, false);
-myLibrary.addBookToLibrary(testBook);
+
+
 </script>
 
     <template>
     <div class="container">
-        <div class="bg-gray-600 flex justify-center my-10">
+        <div class="bg-gray-200 flex rounded-lg justify-center my-5 py-3">
             <div class="flex flex-row pl-5">
                 <input
-                    class="basis-1/5"
+                    class="basis-1/5 px-3 rounded-lg mx-3"
                     v-model="myLibrary.newBook.title"
                     placeholder="Title"
                     required
                 />
                 <input
-                    class="basis-1/5"
+                    class="basis-1/5 px-3 rounded-lg mx-3"
                     v-model="myLibrary.newBook.author"
                     placeholder="Author"
                     required
                 />
-                <input class="basis-1/5" v-model.number="myLibrary.newBook.pages" placeholder="0" />
-                <label class="basis-1/5 self-center px-7">
+                <input
+                    class="basis-1/5 px-3 rounded-lg mx-3"
+                    v-model="myLibrary.newBook.pages"
+                    type="number"
+                    placeholder="0"
+                    @keydown="myLibrary.newBook.pages = myLibrary.newBook.pages > 999 ? 999 : myLibrary.newBook.pages"
+                />
+                <label class="basis-1/5 self-center px-7 rounded-lg mx-3">
                     Read ?
                     <input type="checkbox" v-model="myLibrary.newBook.status" />
                 </label>
                 <!-- Gros prob de form reset, sais pas si jdois mettre un bouton ou un input, mon bouton reset ma page... -->
 
                 <button
-                    class="px-8 text-purple-500 transition-colors duration-150 border border-purple-500 rounded-lg focus:shadow-outline hover:bg-purple-500 hover:text-purple-100"
+                    class="px-8 mx-3 text-purple-500 transition-colors duration-150 border border-purple-500 rounded-lg focus:shadow-outline hover:bg-purple-500 hover:text-purple-100"
                     @click="myLibrary.addBookToLibrary()"
                 >Add Book</button>
             </div>
@@ -81,7 +93,11 @@ myLibrary.addBookToLibrary(testBook);
                     <input :disabled="!book.isNew" v-model="book.author" />
                 </div>
                 <div class="basis-1/5">
-                    <input :disabled="!book.isNew" v-model="book.pages" />
+                    <input
+                        :disabled="!book.isNew"
+                        v-model="book.pages"
+                        @keydown="book.pages = book.pages > 999 ? 999 : book.pages"
+                    />
                 </div>
                 <div class="basis-1/5 pl-4">
                     <input :disabled="!book.isNew" type="checkbox" v-model="book.status" />
@@ -89,7 +105,7 @@ myLibrary.addBookToLibrary(testBook);
                 <div class="basis-1/5">
                     <button
                         class="px-5 text-purple-500 transition-colors duration-150 border border-purple-500 rounded-lg focus:shadow-outline hover:bg-purple-500 hover:text-purple-100"
-                        @click="book.isNew = !book.isNew"
+                        @click="book.update()"
                     >
                         <span v-if="!book.isNew">Modify</span>
                         <span v-if="book.isNew">Save</span>
