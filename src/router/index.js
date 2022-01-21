@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from '../views/Home.view.vue'
 import Clock from '../views/Clock.view.vue'
 import Library from '../views/Library.view.vue'
+import TicTacToe from '../views/Tictactoe.view.vue'
 
 
 const routes = [
@@ -19,6 +20,11 @@ const routes = [
         path: '/library',
         name: 'Library',
         component: Library
+    },
+    {
+        path: '/tictactoe',
+        name: 'TicTacToe',
+        component: TicTacToe
     },
 ]
 const router = createRouter({
