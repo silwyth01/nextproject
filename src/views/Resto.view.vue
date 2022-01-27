@@ -1,4 +1,14 @@
 <script setup>
 import { ref, reactive } from 'vue'
 
-<template></template>
+
+
+</script>
+
+<template>
+    <div id="content">
+        <div>
+            <img v-bind:src="'assets' + logo.png" />
+        </div>
+    </div>
+</template>

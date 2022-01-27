@@ -3,7 +3,7 @@ import Home from '../views/Home.view.vue'
 import Clock from '../views/Clock.view.vue'
 import Library from '../views/Library.view.vue'
 import TicTacToe from '../views/Tictactoe.view.vue'
-import TicTacToe from '../views/Resto.view.vue'
+import Resto from '../views/Resto.view.vue'
 
 
 const routes = [

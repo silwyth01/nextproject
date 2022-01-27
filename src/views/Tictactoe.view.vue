@@ -17,6 +17,7 @@ class Game {
         this.currentPlayer = new Player("");
         this.isActive = true;
         this.message = "";
+        this.drawPoint = 0;
     }
     play(box, nextPlayer) {
         if (box.content != "" || !this.isActive) {
@@ -44,6 +45,7 @@ class Game {
         if (this.isActive && this.gameState.every(box => box.content !== "")) {
             this.isActive = false;
             this.message = `It's a draw`
+            this.drawPoint++
         }
         if (this.isActive) {
             nextPlayer.isPlaying = this.currentPlayer.isPlaying;
@@ -92,14 +94,11 @@ game.message = `It's ${game.currentPlayer.symbol} to play`
     <div class="container">
         <div class="flex">
             <div class="m-auto inline-grid grid-cols-3">
-                <div
+                <button
                     v-for=" box in game.gameState"
                     class="bg-blue-500 w-20 h-20 m-2 text-center text-6xl font-bold rounded hover:bg-blue-600"
-                >
-                    <button
-                        @click="game.currentPlayer.symbol === 'X' ? game.play(box, playerO) : game.play(box, playerX)"
-                    >{{ box.content }}</button>
-                </div>
+                    @click="game.currentPlayer.symbol === 'X' ? game.play(box, playerO) : game.play(box, playerX)"
+                >{{ box.content }}</button>
             </div>
         </div>
         <div>
@@ -107,6 +106,7 @@ game.message = `It's ${game.currentPlayer.symbol} to play`
                 class="flex items-center justify-center space-x-12 my-4 font-semibold text-xl px-5 py-3"
             >
                 <div>Player X : {{ playerX.point }}</div>
+                <div>Draw : {{ game.drawPoint }}</div>
                 <div>Player O : {{ playerO.point }}</div>
             </div>
             <div
