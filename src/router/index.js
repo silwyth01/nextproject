@@ -4,6 +4,7 @@ import Clock from '../views/Clock.view.vue'
 import Library from '../views/Library.view.vue'
 import TicTacToe from '../views/Tictactoe.view.vue'
 import Resto from '../views/Resto.view.vue'
+import Todo from '../views/Todo.view.vue'
 
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
         path: '/resto',
         name: 'Resto',
         component: Resto
+    },
+    {
+        path: '/todo',
+        name: 'Todo',
+        component: Todo
     },
 ]
 const router = createRouter({
