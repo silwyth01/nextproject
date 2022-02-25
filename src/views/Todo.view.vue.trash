@@ -1,0 +1,110 @@
+<script setup>
+import { ref, reactive } from 'vue'
+
+class Task {
+    constructor(project, title, description, dueDate, priority) {
+        this.project = project;
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.dueDate = dueDate;
+
+    }
+
+    update() {
+        if (this.title === "") {
+            alert("This task require a title !");
+            return
+        }
+    }
+}
+
+
+class Kanban {
+    constructor() {
+        this.newTask = new Task('', '', '', '', '');
+        this.tasks = [];
+    }
+    addTaskToKanban() {
+        if (this.newTask.title === "") {
+            alert("This task require a title !")
+            return
+        }
+        this.tasks.unshift(this.newTask);
+        this.newTask = new Task("", "", "", "", "");
+    }
+
+}
+
+class Project {
+    constructor(title, description, dueDate, priority) {
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+    }
+
+    update() {
+        if (this.title === "") {
+            alert("This project require a title!");
+            return
+        }
+    }
+}
+
+class ProjectKanban {
+    constructor() {
+        this.newProject = new Project('', '', '', '');
+        this.projects = [];
+    }
+    addTaskToProjectKanban() {
+        if (this.newProject.title === "") {
+            alert("This task require a title !")
+            return
+        }
+        this.projects.unshift(this.newProject);
+        this.newProject = new Project("", "", "", "");
+    }
+
+}
+
+
+const myKanban = reactive(new Kanban());
+const myProjectKanban = reactive(new ProjectKanban());
+const petiteTache = new Task('Poutine', 'Patate', 'faire une frite', 'avant le souper', 'toDo')
+
+// Day.js pour les dueDates
+// vue.draggable.next
+
+</script>
+
+
+<template>
+    <div class="container mx-auto space-y-5 space">
+        <!-- Pour ajouter un post-it -->
+
+        <div class="grid grid-cols-5 gap-4 bg-orange-300">
+            <div class="bg-blue-300">Backlog</div>
+            <div class="bg-blue-300">
+                To Do
+                <button
+                    class="rounded px-2 bg-yellow-400"
+                    @click="myKanban.addTaskToKanban()"
+                >+</button>
+                <div>
+                    <div class="grid h-12 w-24 gap-5 bg-slate-400">
+                        <input class v-model="myKanban.newTask.title" placeholder="Title" />
+                        <!-- <input v-model="myKanban.newTask.description" placeholder="Description" />
+            <input v-model="myKanban.newTask.dueDate" placeholder="due Date" />
+                        <input v-model="myKanban.newTask.priority" placeholder="Priority" />-->
+                    </div>
+                </div>
+            </div>
+            <div class="bg-blue-300">In Progress</div>
+            <div class="bg-blue-300">QA</div>
+            <div class="bg-blue-300">Done</div>
+        </div>
+
+        <!-- Le menu à gauche pour les projets -->
+    </div>
+</template>
